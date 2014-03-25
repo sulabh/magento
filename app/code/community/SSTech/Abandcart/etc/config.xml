@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    SSTech
+ * @package     SSTech_Abandcart
+ */
+-->
+<config>
+    <modules>
+        <SSTech_Abandcart>
+            <version>0.1.0</version>
+        </SSTech_Abandcart>
+    </modules>
+    <admin>
+        <routers>
+            <abandcart>
+                <use>admin</use>
+                <args>
+                    <modules>
+                        <abandcart before="Mage_Adminhtml">SSTech_Abandcart_Adminhtml</abandcart>
+                    </modules>
+                    <module>SSTech_Abandcart</module>
+                    <frontName>abandcart</frontName>
+                </args>
+            </abandcart>
+        </routers>
+    </admin>
+    <global>
+        <models>
+            <sstech_abandcart>
+                <class>SSTech_Abandcart_Model</class>
+            </sstech_abandcart>
+        </models>
+        <helpers>
+            <sstech_abandcart>
+                <class>SSTech_Abandcart_Helper</class>
+            </sstech_abandcart>
+        </helpers>
+        <blocks>
+            <abandcart>
+                <class>SSTech_Abandcart_Block</class>
+            </abandcart>
+        </blocks>
+        <template>
+            <email>
+                <sstech_abandcart_sstech_abandcart_settings_report_template translate="label" module="sstech_abandcart">
+                    <label>Abandoned Cart Notification</label>
+                    <file>abandcart/emailreport.html</file>
+                    <type>html</type>
+               </sstech_abandcart_sstech_abandcart_settings_report_template>
+            </email>
+        </template>
+    </global>
+    <crontab>
+        <jobs>
+            <sstech_abandcart_email>
+                <run><model>sstech_abandcart/cron::emailreport</model></run>
+                <schedule>
+                    <config_path>sstech_abandcart/sstech_abandcart_settings/report_schedule</config_path>
+                </schedule>
+            </sstech_abandcart_email>
+        </jobs>
+    </crontab>
+    <default>
+        <sstech_abandcart>
+            <stech_abandcart_settings>
+                <report_enabled>0</report_enabled>
+                <report_from_email>general</report_from_email>
+                <report_to_email></report_to_email>
+                <report_template>sstech_abandcart_sstech_abandcart_settings_report_template</report_template>
+                <report_days>7</report_days>
+                <report_schedule>0 6 * * *</report_schedule>
+            </stech_abandcart_settings>
+        </sstech_abandcart>
+    </default>
+    <frontend>
+		<routers>
+		     <abandcart>
+		        <use>standard</use>
+		          <args>
+		             <module>SSTech_Abandcart</module>
+		             <frontName>autologin</frontName>
+		          </args>
+		     </abandcart>
+		 </routers>
+	 </frontend>
+</config>

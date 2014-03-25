@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    SSTech
+ * @package     SSTech_Abandcart
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<sstech_abandcart translate="title">
+										<title>SSTech Section</title>
+									</sstech_abandcart>
+								</children>								
+							</config>
+						</children>				
+					</system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
